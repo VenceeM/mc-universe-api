@@ -21,7 +21,7 @@ const createProfile = async (req, res) => {
 
 }
 
-/** Update User profile */
+/** Get User profile */
 const getProfile = async (req, res) => {
 
     try {
