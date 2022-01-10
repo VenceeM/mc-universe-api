@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "env-cmd -f config/dev.env nodemon src/index.js",
-    "test": "env-cmd -f config/test.env nodemon jest --watch --ranInBand"
+    "test": "env-cmd -f config/test.env jest --watch --runInBand"
   },
   "jest": {
     "testEnvironment": "node"
@@ -15,8 +15,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.5",
     "validator": "^13.7.0"
   },
