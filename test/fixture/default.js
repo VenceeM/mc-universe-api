@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const User = require('../../src/models/user/userModel.js')
+const Profile = require('../../src/models/profile/profileModel.js')
 const jwt = require('jsonwebtoken')
 
 const userOneId = new mongoose.Types.ObjectId()
@@ -15,11 +16,22 @@ const userOne = {
     ]
 }
 
+const profileOneId = new mongoose.Types.ObjectId()
+const profileOne = {
+    _id: profileOneId,
+    first_name: 'Vencee',
+    last_name: 'Manansala'
+}
+
 
 /** Initial setup database */
 const initialSetup = async () => {
     await User.deleteMany()
+    await Profile.deleteMany()
+
     await new User(userOne).save()
+    await new Profile(profileOne).save()
+
 }
 
 
