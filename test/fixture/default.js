@@ -16,6 +16,19 @@ const userOne = {
     ]
 }
 
+const userTwoId = new mongoose.Types.ObjectId()
+const userTwo = {
+    _id: userTwoId,
+    username: 'mrcee112',
+    email: 'cee112@gmail.com',
+    password: 'Mukangwiz112',
+    tokens: [
+        {
+            token: jwt.sign({ _id: userTwoId.toString() }, process.env.JWT_SECRET)
+        }
+    ]
+}
+
 const profileOneId = new mongoose.Types.ObjectId()
 const profileOne = {
     _id: profileOneId,
@@ -30,7 +43,8 @@ const initialSetup = async () => {
     await Profile.deleteMany()
 
     await new User(userOne).save()
-    await new Profile(profileOne).save()
+    await new User(userTwo).save()
+    await new Profile({ ...profileOne, user_owner: userOneId }).save()
 
 }
 
@@ -38,5 +52,10 @@ const initialSetup = async () => {
 module.exports = {
     userOneId: userOneId,
     userOne: userOne,
+    userTwo: userTwo,
+    userTwoId: userTwoId,
     initialSetup: initialSetup,
+    profileOne: profileOne,
+    profileOneId: profileOneId,
+
 }
