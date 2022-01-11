@@ -1,6 +1,6 @@
 const express = require('express')
 const auth = require('../../middleware/auth.js')
-const { create, getProfile } = require('../../controllers/profile/profileController.js')
+const { create, getProfile, updateProfile } = require('../../controllers/profile/profileController.js')
 
 
 const router = new express.Router()
@@ -10,6 +10,9 @@ const router = new express.Router()
 router.post('/profiles', auth, create)
 
 /** Get profile */
-router.get('/profiles', auth, getProfile)
+router.get('/users/me', auth, getProfile)
+
+/** Update Profile */
+router.patch('/users/me', auth, updateProfile)
 
 module.exports = router
