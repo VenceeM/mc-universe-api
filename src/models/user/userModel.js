@@ -55,6 +55,13 @@ const userSchema = new mongoose.Schema({
     ]
 })
 
+/** Create virtual to show get relation */
+userSchema.virtual('profiles', {
+    ref: 'Profile',
+    localField: '_id',
+    foreignField: 'user_owner'
+})
+
 /** Create GenerateAuthToken */
 userSchema.methods.generateAuthToken = async function () {
     const user = this
